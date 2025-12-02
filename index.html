@@ -242,12 +242,12 @@
     const colSpacing = hexRadius * 1.5;
     const rowSpacing = hexRadius * Math.sqrt(3);
     
-    // Reduced wave amplitudes to prevent overlap
+    // Wave amplitudes increased another 25%
     const waves = [
-      { freqX: 0.006, freqY: 0.005, freqT: 0.3, ampX: 2, ampY: 1.5 },
-      { freqX: 0.009, freqY: 0.007, freqT: 0.2, ampX: 1.5, ampY: 2 },
-      { freqX: 0.004, freqY: 0.01, freqT: 0.25, ampX: 1, ampY: 1 },
-      { freqX: 0.012, freqY: 0.003, freqT: 0.35, ampX: 0.8, ampY: 1.2 },
+      { freqX: 0.006, freqY: 0.005, freqT: 0.3, ampX: 4.5, ampY: 3.38 },
+      { freqX: 0.009, freqY: 0.007, freqT: 0.2, ampX: 3.38, ampY: 4.5 },
+      { freqX: 0.004, freqY: 0.01, freqT: 0.25, ampX: 2.25, ampY: 2.25 },
+      { freqX: 0.012, freqY: 0.003, freqT: 0.35, ampX: 1.8, ampY: 2.7 },
     ];
     
     function resize() {
@@ -268,10 +268,10 @@
         brightness += Math.cos(phase) * 0.15;
       }
       
-      // Gentler large undulation
+      // Large undulation increased 25%
       const bigFold = Math.sin(x * 0.002 + time * 0.1) * Math.cos(y * 0.003 + time * 0.08);
-      dx += bigFold * 3;
-      dy += bigFold * 2.5;
+      dx += bigFold * 6.74;
+      dy += bigFold * 5.63;
       brightness += bigFold * 0.2;
       
       return { dx, dy, brightness };
@@ -283,14 +283,14 @@
       const adjustedX = cx + dx;
       const adjustedY = cy + dy;
       
-      // Vary opacity based on fabric fold depth
-      const alpha = Math.max(0.03, Math.min(0.12, 0.07 + brightness));
+      // Subtle opacity
+      const alpha = Math.max(0.015, Math.min(0.055, 0.035 + brightness * 0.4));
       
       const size = drawRadius;
       
       ctx.beginPath();
       ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
-      ctx.lineWidth = 0.5 + brightness * 0.3;
+      ctx.lineWidth = 0.4 + brightness * 0.15;
       
       // Flat-top hexagon
       for (let i = 0; i < 6; i++) {
